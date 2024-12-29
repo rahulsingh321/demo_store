@@ -31,4 +31,9 @@ plugin :tmp_restart
 
 # Specify the PID file. Defaults to tmp/pids/server.pid in development.
 # In other environments, only set the PID file if requested.
-pidfile ENV["PIDFILE"] if ENV["PIDFILE"]
+# pidfile ENV["PIDFILE"] if ENV["PIDFILE"]
+app_dir = "/var/www/demo_store"
+bind "unix://#{app_dir}/tmp/pids/demo_store.sock"
+pidfile "#{app_dir}/tmp/pids/demo_store.pid"
+state_path "#{app_dir}/tmp/pids/demo_store.state"
+
