@@ -32,7 +32,7 @@
       <div class="mt-12 text-center">
         <%= I18n.t("spree.or") %> <%= link_to I18n.t("spree.create_a_new_account"), signup_path, class:"transition-all duration-300 text-black hover:!text-red-500 dark:text-sand underline" %>
       </div>
-
+      <%= render partial: "spree/starter_frontend/shared/social" %>
     <% end %>
   </div>
 </article>
