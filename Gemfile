@@ -87,3 +87,5 @@ end
 gem "solidus_paypal_commerce_platform", "~> 1.0"
 
 gem "solidus_admin", ">= 0.2"
+
+gem 'solidus_social', git: 'https://github.com/rahulsingh321/solidus_social.git', branch: 'compatible-with-FE-starter'

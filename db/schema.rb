@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_29_080931) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_31_165721) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -158,6 +158,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_29_080931) do
     t.datetime "updated_at"
     t.index ["viewable_id"], name: "index_assets_on_viewable_id"
     t.index ["viewable_type", "type"], name: "index_assets_on_viewable_type_and_type"
+  end
+
+  create_table "spree_authentication_methods", id: :serial, force: :cascade do |t|
+    t.string "environment"
+    t.string "provider"
+    t.string "api_key"
+    t.string "api_secret"
+    t.boolean "active"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
   end
 
   create_table "spree_calculators", id: :serial, force: :cascade do |t|
@@ -1109,6 +1119,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_29_080931) do
     t.index ["user_id"], name: "index_spree_user_addresses_on_user_id"
   end
 
+  create_table "spree_user_authentications", id: :serial, force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "provider"
+    t.string "uid"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.index ["uid", "provider"], name: "index_spree_user_authentications_on_uid_and_provider", unique: true
+    t.index ["user_id"], name: "index_spree_user_authentications_on_user_id"
+  end
+
   create_table "spree_user_stock_locations", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.integer "stock_location_id"
@@ -1242,5 +1262,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_29_080931) do
   add_foreign_key "spree_promotion_codes", "spree_promotion_code_batches", column: "promotion_code_batch_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_categories", column: "tax_category_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_rates", column: "tax_rate_id"
+  add_foreign_key "spree_user_authentications", "spree_users", column: "user_id"
   add_foreign_key "spree_wallet_payment_sources", "spree_users", column: "user_id"
 end
