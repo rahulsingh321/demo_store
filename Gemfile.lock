@@ -495,7 +495,7 @@ GEM
       solidus_webhooks (~> 0.2)
     solidus_sample (4.4.2)
       solidus_core (= 4.4.2)
-    solidus_support (0.12.0)
+    solidus_support (0.13.0)
     solidus_webhooks (0.4.2)
       solidus_api (>= 2.0.0, < 5)
       solidus_core (>= 2.0.0, < 5)
